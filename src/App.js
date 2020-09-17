@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import ToDo from './component/ToDo'
 
 function App() {
+
+  const [task, setTask] = useState("")
+  const handelText = (event) => {
+    setTask(event.target.value)
+  }
+  const [tasks, setTasks] = useState([])
+  const handelSubmit = () => {
+    // setTasks(tasks.push(task))//data manipulation
+    setTasks([...tasks, task])
+  }
+  const toDoList = tasks.map((eachTask) => <ToDo value={eachTask} />)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>ToDO List</h1>
+      <label for="task">your text</label>
+      <input type="text" id="task" onChange={handelText} value={task} />
+      <button onClick={handelSubmit}> Click me! </button>
+      <div >
+        {toDoList}
+      </div>
     </div>
   );
 }
