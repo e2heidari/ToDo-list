@@ -11,14 +11,18 @@ function App() {
   const [tasks, setTasks] = useState([])
   const handelSubmit = () => {
     // setTasks(tasks.push(task))//data manipulation
-    setTasks([...tasks, task])
+    setTasks([task, ...tasks])
   }
-  const toDoList = tasks.map((eachTask) => <ToDo value={eachTask} />)
+  const handelDelete = (item) => {
+    setTasks(toDoList.filter(eachTask => item === eachTask))
+  }
+  const toDoList = tasks.map((eachTask) => <ToDo value={eachTask} deleteTask={handelDelete} />)
+
   return (
     <div>
       <h1>ToDO List</h1>
       <label for="task">your text</label>
-      <input type="text" id="task" onChange={handelText} value={task} />
+      <input type="text" id="task" onfocus="this.value=''" onChange={handelText} value={task} />
       <button onClick={handelSubmit}> Click me! </button>
       <div >
         {toDoList}
