@@ -1,10 +1,11 @@
 import React from "react";
 
-const ToDo = ({ value, deleteTask, isDelete }) => {
+const ToDo = ({ value, deleteTask }) => {
     return (
+
         <div id="lineThrough">
             <input type="checkbox" id="routine" value="text" />
-            <lable for="routine">{`your ToDo: ${value}`}</lable>
+            <label htmlFor="routine">{`your ToDo: ${value}`}</label>
             <button onClick={() => deleteTask(value)}>Delete</button>
         </div>
     )
